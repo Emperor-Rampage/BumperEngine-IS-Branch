@@ -1,0 +1,187 @@
+Bumper Engine TODO v1.0 
+5/13/2018
+Conner Lindsley
+
+:Inital Impressions:
+	-Hey, this is pretty cute. The little messages in the demo scene for new Unity users is a great touch, this is obviously geared towards easy level creation.
+	-Versatile, with some pointed things missing. (Other/Customizable ways to play as different characters. They all feel almost the same.(Hard to do with only one character archtype))
+	-This "Hedge Physics" or whatever is interesting, but feels un-polished in places. Going around loops, up walls, and other sudden momentum stoppers
+	 feel /bad/. Losing momentum is too easy, whilst building it up takes too long/is inconsistent/requires ramps to build up.
+	-!Can't build up max speed just by running! <- That's the problem. Not even spin dash puts you in max speed.
+	-Not much polish, this is very much a 'Toolset. Getting visual fidelity/good uX is going to require a lot of user input.
+
+	This is a great start and, like the debut trailer said, can be even better with the right work put in. I don't feel obligated to work on
+	any of this, but why not? 
+
+	:Goal: Help get a good set of tools out there and in the hands of people who want to play with it. 
+	
+	(Also, this may help me cut my teeth a bit on system/mechanics programming.)
+
+:Design Philosophy:
+	-This product needs to be able to be used by everyday people with as little learning as possible. 
+	-This product needs to rely as little upon third-party packages and code as possible.
+	-This product needs to be clean and pleasing to look at.
+
+:Bugs:
+	-Noticed that sometimes the character will reset their facing direction when jumping and no direction is pushed on the controller.
+		Not sure what's causing it, as I haven't delved into any code.
+
+	-Can get stuck in Spring Pads, when Homing Dashing into them. Causes the player to get stuck for a little bit before throwing them in the direction of the spring.
+		Can replicate by mashing Homing Dash at a Spring. Seems to be the same throw height, despite the power of the Spring itself.
+		ADDENDUM: Can throw the player in several directions, seems to be caused by homing attacking whilst standing in the spring itself. Can also
+		activate when running into the Spring Pad. 
+		Possible Cause: Collision detection troubles with the player and the Spring's trigger collider. Possibly add sphere collider to the Spring to remove this bug.
+
+:UX Design Changes:
+	o Screen Shake:
+	o Wall Splat:
+	o Postprocessing Effects for Speed:
+	o Physics Tweaks: Lots of 'em.
+		- Rolling degrades speed too fast. Have the character break out of the roll after a time (Expose values for customization with 0 = doesn't roll at all)
+		- Let Player speed up to max speed through running.
+		- Speed degrades too fast when moving Up walls, and too slow when moving horizontally.
+
+:Feature Additions: <NOTE> These are features that would expand the scope of the toolset for other types of fan games.
+
+	:General Engine Features:
+
+		-Game Manager for tracking Character Progress through Levels, Stages, Hub, etc.
+		-Different Character Archetypes, and systems to support them. CREATE ARCHTYPE SYSTEM FOR EASY CREATION.
+			o Basic Style
+				a. Type Base that has basic character functionality.
+				b. No Light Speed Dash. No Drop Dash. No Bounce. White Bread.
+			o Knuckles Style (Adventure)
+				a. Attacks
+				b. Gliding
+				c. Digging
+			o Tails Style (Adventure/Other)
+				a. Flight (Permanent and Temporary)
+			o Mech Style (Adventure)
+				a. Hover
+				b. Lazer Target/ Blast Targetting System (Maybe try and leverage homing attack code...)
+			o Character Action Style (Unleashed/Boom?)
+				a. Combo Attack System (Build upon Knux attack system? Make it one bigger Attack system?)
+				b. Combo Meter
+			o Boost Style (Boost Meter only?)
+				a. Drifting
+				b. Lane System
+		     <OTHER IDEAS>
+			o Shadow Style (Original-The-Character-Do-Not-Steal (Shadow the Hedgehog))
+				a. Vehicle System (Hmm... Allow Mech Style characters to get in and out of the Mech?)
+				b. Weapon Pickups
+				c. Third Person Aiming (Allow as an option for Mech Style too? Might help with the weird "waggle" of targeting in the Adventure Mechs)
+			o Team Style (Sonic Heroes)
+				a. One Button Character Switch System
+				b. Type Designation(Power, Speed, Flight)
+			o Rider Style (Sonic Riders (lol))
+				a. HOVERBOARDZ
+				b. The systems for this is a whole other game (Tricks, Air Gauge, Type Hazards, Tracks and checkpoints, special interfaces, etc etc)
+			o R Style (Sonic R, actual racing)
+				a. Same as Rider Style, but more attainable with the toolset mechanics.
+				b. A bunch of OC's racing around track with custom everything GMod style sounds kinda cool, though.
+			o Other Style (Custom built Types that follow the Archtype system)
+				a. This is mostly allowing people with programming knowledge to create their own.
+				b. An easy way to define user made Style/Archtypes. This thing is open source so I'm not necessarily sure this is needed.
+
+		-Easy Eqipment System (Like Adventures Ability Upgrades)
+		-Grind Rails/Edges
+		-(FIXED)Expanded Spline System: System is much more expansive than I originally thought. Though it seems a bit broken...
+		-Parkour System (Lost World) <NOTE> I actually don't know how this works. I think it's just a /\/\/ Wall Jump, thing...
+		-2D Gameplay Zones (Generations/Forces)
+		-Expanded Options Menu (Kinda' a must.)
+			o Graphics
+			o Controls
+			o Gameplay
+			o Audio
+		-Colorblind Mode (This will take some work, but I think it's worth it.)
+		-Timer/Easy Time Tracking System
+		-Health Bar 
+		-Lose All or a few rings (Allow for percentages, and static values (expand to allow for static values depending on range?))
+		-Extra Life
+		-Monitor System
+		-Stage Interactables
+			o Hand Pully (Adventure)
+			o Launcher (Generations, and I think, Unleashed)
+			o Air Launch Pads (The QTE ones)
+
+		-Custom Stage ending parameters
+			o Choose to use the Goal Ring
+			o Ending Capsule
+			o Stage End Sign
+			o Cutom End Volume
+			o Finish Line? (Custome End Volume)
+		-PreBuilt Stage End Screen for easy modification
+
+	     <OTHER IDEAS>
+		-Forces Style Character Creator (Pffffft, this thing is Open Source, just let people add in their own characters for fuck's sake)
+		-Multiplayer Support
+			o Local
+			o Online (Local Server)
+		-Enemy AI Updated to C# Jobs System and Overhauled to be more modifiable.
+		-Sonic Colors/Unleashed Style Alien Powers.
+		-Sonic Forces Weapon System.
+		-System for changing the collectable model (Allow gems, or coins or whatever)
+
+	:Test Game Specific Features:
+		-Dialogue System
+
+:2018.1 Updates:
+
+	<Done> 1. Removed Rotational Particle Script (New Angular velocity component in particle system removes the need for this, though I guess I should look through it all the same.)
+
+	<Done> 2. Need to re-copy game into 2017.3/4 to reset all the Substance Painter Materials, which I didn't know they had (But should have guessed...)
+
+	3. Download various asset bundles: <NOTE> These are more for my useage, not the finished project as a whole. (But who cares, all of these are free anyway...)
+		<Done> -Pro Builder (Man, this will likly come in SUPER handy)
+		<Done> -Pro Grid (Again, level building/prototyping in general will be MUCH easier)
+		<Done> -Poly Brush (Great for Terrain! I can see uses in building better terrain for gameplay)
+		<Done> -Cinemachine (Cutscenes, yall)
+		<Done> -Render Pipelines
+			o Using the HD Pipeline, I can do some real good with the Postproccessing Stack here. Working on some DoF/Vignetting 
+			  can really help with making the feeling of speed.
+			o Setting up hooks for the Lightweight RP would be awesome, too.
+		<Done>-Substance Painter Extension for funsies.
+		-Aura for the pretties. <NOTE> Aw dammit. I didn't think about the SRP, Aura doesn't support any of the SRP features yet... And with them all in preview, I think I may be SOL for now...
+		<Done>-Surge
+		<Done>-Unity Chan -sd (For Testing)
+		<REWORK> -Lux <Reason>  -Lux (Personal) isn't updated to 2018.1, but the paid version is. If I wanna update the Shaders for 2018.1, though...
+					-Is Lux even needed now? I believe the HD RP does almost everything, internally... And I would have more control...
+					-It doesn't do dynamic weather, but don't think it's necessary for the Toolset. (Would be cool, though.)
+		-Possibly Aquas, Nature Starter Kit. Depends on how the HD Pipeline Messes Everything Up. In Fact...
+		
+	4. Import Framerate Counter and Camera Shake from Hydrus.
+
+	5. Re-write Shaders to comply with HD and Lightweight RP. 
+
+		- Lux Plus (the paid version) was updated to 2018.1. I figure it's only a matter of time until the personal one is as well (dood's gotta make money somehow).
+		  If I can figure out exactly what these Lux shaders are used for in the Bumper Engine, build custom shaders to do whatever this needs, the project won't rely on it.
+		  Unfortunatly, this has the side effect of needing upkeep by me or another programmer, because I'm certainly not getting paid for this...
+
+		- MatCap: I'm not familiar with these shaders, but they seem to be used mainly to add faked reflections. The texture doesn't change direction from the camera,
+		  and the code looks pretty light weight. Shouldn't bee too difficult to update and such... I say that, but my shader skills are still pretty weak...
+
+		- Tri-Planar World Normal: This bitch looks great! Again, I need to run through it and figure out what's happening under the hood. This is a huge part of the level
+		  creation and, as such, needs to look great in the HD RP and otherwise.
+
+		- Having 3 versions of all the materials and shaders is going to be really annoying, so I need to keep everything clean. Speaking of clean...
+
+	6. Clean up the File Structure and come up with a best practices guide for Code and Asset inclusion. This thing is all over the place sometimes... I can see the separation, though.
+	   Just needs some polish and it'll be worth it.
+
+	7. Find all External Dependencies in code. After the visual stuff, the actual code will need to be delved into. Going to have to remove depriciated code and comment everything, with
+	   guides for anyone who comes after me.
+
+	8. Contact the original Dev(s) and see how they're doing and talk about stuff going on.
+
+
+
+
+
+
+
+
+
+
+
+
+
